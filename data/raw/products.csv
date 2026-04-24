@@ -1,0 +1,42 @@
+product,year,uptake_rate,is_digital
+M-pesa,2009,12.0,0
+M-pesa,2016,33.8,0
+M-pesa,2019,40.9,0
+M-pesa,2021,45.7,0
+M-pesa,2024,52.1,0
+Bank Account,2006,0.2,0
+Bank Account,2009,10.3,0
+Bank Account,2016,25.6,0
+Bank Account,2019,31.2,0
+Bank Account,2021,33.1,0
+Bank Account,2024,38.9,0
+SACCO,2006,0.0,0
+SACCO,2009,3.9,0
+SACCO,2016,8.4,0
+SACCO,2019,9.9,0
+SACCO,2021,10.5,0
+SACCO,2024,12.0,0
+Mobile Bank,2016,8.1,0
+Mobile Bank,2019,12.5,0
+Mobile Bank,2021,15.5,0
+Mobile Bank,2024,19.3,0
+Digital MFI,2016,0.0,1
+Digital MFI,2019,7.6,1
+Digital MFI,2021,10.5,1
+Digital MFI,2024,14.8,1
+Fuliza Overdraft,2019,0.0,1
+Fuliza Overdraft,2021,8.6,1
+Fuliza Overdraft,2024,16.4,1
+Hustler Fund,2024,12.5,1
+Insurance,2006,0.0,0
+Insurance,2009,2.8,0
+Insurance,2016,6.8,0
+Insurance,2019,7.9,0
+Insurance,2021,8.6,0
+Insurance,2024,8.6,0
+Chama/ROSCA,2006,0.4,0
+Chama/ROSCA,2009,1.5,0
+Chama/ROSCA,2016,3.8,0
+Chama/ROSCA,2019,3.7,0
+Chama/ROSCA,2021,4.8,0
+Chama/ROSCA,2024,4.3,0

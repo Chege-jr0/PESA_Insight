@@ -84,9 +84,9 @@ def extract_county_inclusion():
                 "mpesa_adoption": round(inclusion * np.random.uniform(0.55, 0.70), 1),
                 "bank_account_rate": round(inclusion * np.random.uniform(0.35, 0.50), 1),
                 "sacco_membership": round(inclusion * np.random.uniform(0.10, 0.15), 1),
-                "financial_health": round(REAL_DATA["financial_heath"] * (inclusion / 84.8) + np.random.uniform(-2, 2), 1),
+                "financial_health": round(REAL_DATA["financial_health"] * (inclusion / 84.8) + np.random.uniform(-2, 2), 1),
                 "credit_uptake": round(REAL_DATA["credit_uptake"] * (inclusion / 84.8) + np.random.uniform(-3, 3),1),
-                "savings_rate": round(REAL_DATA["savings_rate"] * (inclusion / 84.8) + np.ramdom.uniform(-3, 3), 1)
+                "savings_rate": round(REAL_DATA["savings_rate"] * (inclusion / 84.8) + np.random.uniform(-3, 3), 1)
             })
 
     df = pd.DataFrame(records)
@@ -107,30 +107,38 @@ def extract_mpesa_trends():
     # Real M-pesa subscriber dara from Safaricom annual reports
     real_subscribers = {
         2007: 1.0,  2008: 5.0,  2009: 9.5,  2010: 13.8,
-        2011: 17.3, 2012: 19.0, 2013: 21.8, 2014: 24.1,
-        2015: 25.6, 2016: 26.0, 2017: 29.5, 2018: 33.0,
-        2019: 37.1, 2020: 41.5, 2021: 48.3, 2022: 52.4,
-        2023: 60.7, 2024: 66.2
+        2011: 17.3, 2012: 19.0, 2013: 21.8, 2014: 19.9,
+        2015: 21.2, 2016: 23.0, 2017: 27.0, 2018: 28.1,
+        2019: 28.5, 2020: 29.9, 2021: 30.4, 2022: 31.2,
+        2023: 32.1, 2024: 34.0
     }
 
     records = []
+
     for year, subscribers_millions in real_subscribers.items():
         noise = np.random.uniform(-0.3, 0.3)
+
+
         records.append({
             "year": year,
             "subscribers_millions": round(subscribers_millions + noise, 1),
+
             "active_users_millions": round(subscribers_millions * 0.65 + np.random.uniform(-0.5, 0.5),1),
-            "agents_thousands": round(subscribers_millions * 5.2 + np.random.uniform(-10, 10), 0),
-            "transcations_billion_kes": round(subscribers_millions * 2.1 + np.random.uniform(-5, 5), 1),
-            "avg_transaction_kes": round(1420 * (year / 2024) * 0.85 + np.random.uniform(-50, 50), 0),
-            "revenue_billions_kes": round(subscribers_millions * 2.1 + np.random.uniform(-2, 2), 1)
+
+            "agents_thousands": round(subscribers_millions * 8.8 + np.random.uniform(-5, 5), 0),
+
+            "transactions_billions_kes": round(subscribers_millions * 1.05 + np.random.uniform(-2, 2), 1),
+
+            "avg_transaction_kes": round(900 * (year - 2007) * 35 + np.random.uniform(-30, 30), 0),
+
+            "revenue_billions_kes": round(subscribers_millions * 0.28 + np.random.uniform(-1, 1), 1)
         })
 
-        df = pd.DataFrame(records)
-        filepath = f"{RAW_DATA_PATH}/mpesa_trends.csv"
-        df.to_csv(filepath, index=False)
-        print(f"Mpesa trend data generate{len(df)} records saved.")
-        return df 
+    df = pd.DataFrame(records)
+    filepath = f"{RAW_DATA_PATH}/mpesa_trends.csv"
+    df.to_csv(filepath, index=False)
+    print(f"Mpesa trend data generate{len(df)} records saved.")
+    return df 
 
 # Simulating Demographics data of financial inclusion
 
@@ -166,7 +174,7 @@ def extract_demographics():
         2024: {"urban": 91.3, "rural": 80.2}
     }
 
-    age_groups = ["15-24", "25-34", "35-44", "45-54", "55+ "]
+    age_groups = ["15-24", "25-34", "35-44", "45-54", "55+"]
 
     age_multipliers = {
         "15-24": 0.78, "25-34": 1.05,
@@ -189,16 +197,16 @@ def extract_demographics():
                 "male_inclusion": round(male_rate * multiplier + np.random.uniform(-1, 1), 1),
                 "female_inclusion": round(female_rate * multiplier + np.random.uniform(-1, 1),1),
                 "gender_gap": round((male_rate - female_rate) * multiplier, 1),
-                "urban_inclusion": round(urban_rate * multiplier + np.ramndom.uniform(-1, 1),1),
+                "urban_inclusion": round(urban_rate * multiplier + np.random.uniform(-1, 1),1),
                 "rural_inclusion": round(rural_rate * multiplier + np.random.uniform(-1, 1),1),
                 "urban_rural_gap": round((urban_rate - rural_rate) * multiplier,1),
                 "national_avg": round(national * multiplier, 1)
             })
-        df = pd.DataFrame(records)
-        filepath = f"{RAW_DATA_PATH}/demographics.csv"
-        df.to_csv(filepath, index=False)
-        print(f"Demographics data generated{len(df)} records saved.")
-        return df     
+    df = pd.DataFrame(records)
+    filepath = f"{RAW_DATA_PATH}/demographics.csv"
+    df.to_csv(filepath, index=False)
+    print(f"Demographics data generated{len(df)} records saved.")
+    return df     
 
 
 # Simulating Financial Exclusion Barrier Data
@@ -267,7 +275,7 @@ def extract_products():
         "M-pesa": 52.6,
         "Bank Account": 38.4,
         "SACCO": 11.7,
-        "Mobile Bank (M-Shwari etc)": 19.3,
+        "Mobile Bank": 19.3,
         "Digital MFI": 14.2,
         "Fuliza Overdraft": 16.8,
         "Hustler Fund": 12.4,
@@ -282,7 +290,7 @@ def extract_products():
         "M-pesa": 2007,
         "Bank Account": 2006,
         "SACCO": 2006,
-        "Mobile Bank(M-shwari etc)": 2013,
+        "Mobile Bank": 2013,
         "Digital MFI": 2016,
         "Fuliza Overdraft": 2019,
         "Hustler Fund": 2022,

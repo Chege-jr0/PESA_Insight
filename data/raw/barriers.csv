@@ -1,0 +1,41 @@
+barrier,year,percentage
+No Mobile Phone,2013,95.0
+No Mobile Phone,2016,89.9
+No Mobile Phone,2019,79.7
+No Mobile Phone,2021,73.4
+No Mobile Phone,2024,62.7
+No Identity Document,2013,69.4
+No Identity Document,2016,63.2
+No Identity Document,2019,58.8
+No Identity Document,2021,56.2
+No Identity Document,2024,50.6
+Insufficient Income,2013,53.7
+Insufficient Income,2016,51.7
+Insufficient Income,2019,48.8
+Insufficient Income,2021,47.0
+Insufficient Income,2024,44.0
+Lack of Trust,2013,39.4
+Lack of Trust,2016,35.9
+Lack of Trust,2019,34.4
+Lack of Trust,2021,30.8
+Lack of Trust,2024,28.0
+Distance to Agent,2013,43.0
+Distance to Agent,2016,37.5
+Distance to Agent,2019,31.3
+Distance to Agent,2021,27.2
+Distance to Agent,2024,25.1
+Literacy Barriers,2013,25.6
+Literacy Barriers,2016,24.3
+Literacy Barriers,2019,23.3
+Literacy Barriers,2021,21.1
+Literacy Barriers,2024,19.8
+Relevance,2013,4.7
+Relevance,2016,4.5
+Relevance,2019,3.3
+Relevance,2021,2.6
+Relevance,2024,4.6
+Others,2013,6.3
+Others,2016,6.1
+Others,2019,6.9
+Others,2021,6.3
+Others,2024,6.7

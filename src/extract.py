@@ -311,16 +311,16 @@ def extract_products():
                 noise = np.random.uniform(-1, 1)
                 uptake = round(max(0, min(99, rate_2024 * growth + noise)), 1)  
 
-                records.append({
-                    "product": product,
-                    "year": year,
-                    "uptake_rate": uptake,
-                    "is_digital": 1 if product in [
-                        "M-Pesa", "Mobile Bank(M-Shwari etc)",
-                        "Digital MFI", "Fuliza Overdraft", "Hustler Fund"
-                    ] else 0
+            records.append({
+                "product": product,
+                "year": year,
+                "uptake_rate": uptake,
+                "is_digital": 1 if product in [
+                    "M-Pesa", "Mobile Bank(M-Shwari etc)",
+                    "Digital MFI", "Fuliza Overdraft", "Hustler Fund"
+                ] else 0
 
-                }) 
+            }) 
 
     df = pd.DataFrame(records)
     filepath = f"{RAW_DATA_PATH}/products.csv"

@@ -101,7 +101,7 @@ def transform_mpesa_data():
     )
 
     print(f"M-pesa data transformed {len(df)} records transformed.")
-
+    return df
 
 def transform_demographics_data():
     """
@@ -166,6 +166,7 @@ def transform_barriers_data():
     df["improvement"] = (df["improvement"] * -1).round(1)
 
     print(f"Barriers data transformed! {len(df)} records transformed")
+    return df
 
 def transform_products_data():
     """
@@ -214,8 +215,8 @@ def transform_all():
     print("All data transformed Successfully")
 
     return{
-        "County": county,
-        "Mpesa": mpesa,
+        "county": county,
+        "mpesa": mpesa,
         "demographics": demographics,
         "barriers": barriers,
         "products": products

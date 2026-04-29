@@ -1,8 +1,8 @@
 ## PesaInsight - Kenya Mobile Mney and Financial Inclusion
 
-An AI-powered intelligence pllatform that tracks M-pesa adoption, financial inclusion gaps and exclusion barriers across Kenya, with forecasting to 2030 and an AI adviser for SME,s and policy makers
+An AI-powered intelligence platform that tracks M-pesa adoption, financial inclusion gaps and exclusion barriers across Kenya, with forecasting to 2030 and an AI adviser for SME,s and policy makers
  
-"Kenya leads the world in mobile money, Yet a minority of Kenyans remain completely financially excluded and in remote areas, the percenahe is even higher. PesaInsights exists to make the contradiction visible, understable and actionable."
+"Kenya leads the world in mobile money, Yet a minority of Kenyans remain completely financially excluded and in remote areas, the percentage is even higher. PesaInsights exists to make the contradiction visible, understable and actionable."
 
 ## Data Sources
 1. 2025 FinAccess Household Survey

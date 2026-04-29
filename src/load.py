@@ -24,8 +24,10 @@ def load_county_data(conn, df):
     """
     print("Loading county data...")
     df["inclusion_severity"] = df["inclusion_severity"].astype(str)
-    df.to_sql("county_inclusion", conn, if_exists="replace", index=False)
-    count = pd.read_sql("SELECT COUNT (*) AS total FROM county_inclusion", conn)
+
+    df.to_sql("county_inclusion_data", conn, if_exists="replace", index=False)
+    
+    count = pd.read_sql("SELECT COUNT (*) AS total FROM county_inclusion_data", conn)
     print(f"County data loaded! {count['total'][0]} records saved to database")
 
 # Loading mpesa data to database  
@@ -34,7 +36,9 @@ def load_mpesa_data(conn, df):
     Loading M-pesa trend data.
     """
     print("Loading M-pesa data...")
+
     df.to_sql("mpesa_trends", conn, if_exists="replace", index=False)
+
     count = pd.read_sql("SELECT COUNT(*) AS total FROM mpesa_trends", conn)
     print(f"M-pesa data loaded {count['total'][0]} records loaded to database")
 
@@ -44,7 +48,9 @@ def load_demographics(conn, df):
     Load demographics data.
     """ 
     print("Loading demographics data...")
-    df.to_sql("demogarphics", conn, if_exists="replace", index=False) 
+
+    df.to_sql("demographics", conn, if_exists="replace", index=False) 
+
     count = pd.read_sql("SELECT COUNT(*) as total FROM demographics", conn)
     print(f"Demographics data loaded {count['total'][0]} records saved to database") 
 
@@ -54,9 +60,11 @@ def load_barriers_data(conn, df):
     Loading barriers data.
     """
     print("Loading Barriers data....")
+
     df["severity"] = df["severity"].astype(str)
+
     df.to_sql("barriers", conn, if_exists = "replace", index=False)
-    count = pd.read_sql("SELECT COUNT(*) as total FROM demographics", conn)
+    count = pd.read_sql("SELECT COUNT(*) as total FROM barriers", conn)
     print(f"Barriers data loaded {count['total'][0]} records saved to database")
 
 # Loading Products data to database
@@ -65,25 +73,25 @@ def load_products(conn, df):
     Loading Financial Products data
     """ 
     print("Loading products data...")
-    df.to_sql("Financial Products", conn, if_exists="replace", index= False)
+    df.to_sql("products", conn, if_exists="replace", index= False)
     count = pd.read_sql(
-        "SELECT COUNT(*) as total FROM financial_products", conn
+        "SELECT COUNT(*) as total FROM products", conn
     )   
     print(f"Products data loaded {count['total'][0]} records saved to database")
 
-def verify_database(conn):
-    """Check all tables exist and show record counts."""
-    print("\n📊 Database Summary:")
-    print("=" * 45)
+
+# Verify Database
+def verify_databse(conn):
+    """Check all the tables exist and show record counts."""
+    print("Database Summary")
 
     tables = [
-        "county_inclusion",
+        "county_inclusion_data",
         "mpesa_trends",
         "demographics",
         "barriers",
-        "financial_products"
-    ]
-
+        "products"
+    ]   
     all_good = True
     for table in tables:
         try:
@@ -91,19 +99,20 @@ def verify_database(conn):
                 f"SELECT COUNT(*) as total FROM {table}", conn
             )
             records = int(count["total"][0])
-            status = "✅" if records > 0 else "❌"
+            status = "Success" if records > 0 else "Failed"
             print(f"  {status} {table}: {records} records")
-            if records == 0:
+        
+            if records  == 0:
                 all_good = False
         except Exception as e:
-            print(f"  ❌ {table}: Error — {e}")
-            all_good = False
+            print(f"{table}: Error - {e}")
 
-    print("=" * 45)
+            all_good = False
     if all_good:
-        print("✅ All tables loaded successfully!")
+        print("All tables loaded Successfully")
+
     else:
-        print("❌ Some tables have issues — check pipeline!")    
+        print("Some tables have issues - check pipeline")           
 
 
 def load_all():
@@ -125,7 +134,11 @@ def load_all():
     load_barriers_data(conn, data["barriers"])
     load_products(conn, data["products"])
 
+    # Verify database
+    verify_databse(conn)
+
     #Close connection
+    conn.close()
     print("Database connection closed")
     print("ETL Pipeline complete")
 

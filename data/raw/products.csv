@@ -1,4 +1,5 @@
 product,year,uptake_rate,is_digital
+M-pesa,2006,0.0,0
 M-pesa,2009,12.0,0
 M-pesa,2016,33.8,0
 M-pesa,2019,40.9,0
@@ -16,17 +17,29 @@ SACCO,2016,8.4,0
 SACCO,2019,9.9,0
 SACCO,2021,10.5,0
 SACCO,2024,12.0,0
+Mobile Bank,2006,0.0,0
+Mobile Bank,2009,0.0,0
 Mobile Bank,2016,8.1,0
 Mobile Bank,2019,12.5,0
 Mobile Bank,2021,15.5,0
 Mobile Bank,2024,19.3,0
+Digital MFI,2006,0.0,1
+Digital MFI,2009,0.0,1
 Digital MFI,2016,0.0,1
 Digital MFI,2019,7.6,1
 Digital MFI,2021,10.5,1
 Digital MFI,2024,14.8,1
+Fuliza Overdraft,2006,0.0,1
+Fuliza Overdraft,2009,0.0,1
+Fuliza Overdraft,2016,0.0,1
 Fuliza Overdraft,2019,0.0,1
 Fuliza Overdraft,2021,8.6,1
 Fuliza Overdraft,2024,16.4,1
+Hustler Fund,2006,0.0,1
+Hustler Fund,2009,0.0,1
+Hustler Fund,2016,0.0,1
+Hustler Fund,2019,0.0,1
+Hustler Fund,2021,0.0,1
 Hustler Fund,2024,12.5,1
 Insurance,2006,0.0,0
 Insurance,2009,2.8,0

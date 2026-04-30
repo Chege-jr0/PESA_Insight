@@ -56,22 +56,22 @@ def get_market_context() -> dict:
 def build_context_brief(context: dict) -> str:
     """Build a structured brief from context dictionary."""
     return f"""
-Kenya Financial Inclusion Intelligence Brief (2024):
+    Kenya Financial Inclusion Intelligence Brief (2024):
 
-National Overview:
-- Average inclusion rate: {context['national_inclusion']}%
-- Average exclusion rate: {context['national_exclusion']}%
-- M-Pesa subscribers: {context['mpesa_subscribers']} million
-- Average financial health score: {context['avg_financial_health']}%
+    National Overview:
+    - Average inclusion rate: {context['national_inclusion']}%
+    - Average exclusion rate: {context['national_exclusion']}%
+    - M-Pesa subscribers: {context['mpesa_subscribers']} million
+    - Average financial health score: {context['avg_financial_health']}%
 
-County Analysis:
-- Best performing county: {context['best_county']} at {context['best_rate']}%
-- Worst performing county: {context['worst_county']} at {context['worst_rate']}%
+    County Analysis:
+    - Best performing county: {context['best_county']} at {context['best_rate']}%
+    - Worst performing county: {context['worst_county']} at {context['worst_rate']}%
 
-Key Barrier:
-- Biggest exclusion barrier: {context['top_barrier']}
-- Average gender gap: {context['avg_gender_gap']}%
-"""
+    Key Barrier:
+    - Biggest exclusion barrier: {context['top_barrier']}
+    - Average gender gap: {context['avg_gender_gap']}%
+    """
 def generate_policy_insights(context: dict = None) -> str:
     """
     Mode 1 — Policy Analyst
@@ -165,13 +165,8 @@ def advise_sme(business_type: str, county: str, context: dict = None) -> str:
         return f" AI unavailable. Make sure Ollama is running.\nError: {str(e)}"
 
 
-def advise_individual(
-        income_level: str,
-        county: str,
-        has_phone: bool,
-        has_id: bool,
-        context: dict = None
-) -> str:
+def advise_individual(income_level: str, county: str, has_phone: bool, has_id: bool, context: dict = None) -> str:
+
     """
     Mode 3 - Personal Financial Inclusion Advisor
     Helps individuals understand which financial 
@@ -183,46 +178,46 @@ def advise_individual(
     if context is None:
         context = get_market_context()
 
-        #Build personalised context
-        access_status = []
-        if not has_phone:
-            access_status.append("does not have a mobile phone")
-        if not has_id:
-            access_status.append("does not have a national ID")
-        if not access_status:
-            access_status.append("has both phone and ID")
+    #Build personalised context
+    access_status = []
+    if not has_phone:
+        access_status.append("does not have a mobile phone")
+    if not has_id:
+        access_status.append("does not have a national ID")
+    if not access_status:
+        access_status.append("has both phone and ID")
 
-        access_str = " and ".join(access_status)
+    access_str = " and ".join(access_status)
 
-        prompt = f""" You are a compassionate financial inclusion advisor
-            helping ordinary Kenyans access financial services for the first time.
+    prompt = f"""You are a compassionate financial inclusion advisor
+        helping ordinary Kenyans access financial services for the first time.
 
-            The person you are helping:
-            - Lives in: {county}, Kenya
-            - Income level: {income_level}
-            - Access status: {access_str}
+        The person you are helping:
+        - Lives in: {county}, Kenya
+        - Income level: {income_level}
+        - Access status: {access_str}
 
-            Kenya's national financial inclusion rate is {context['national_inclusion']}%
-            but {county} may have different access levels.
+        Kenya's national financial inclusion rate is {context['national_inclusion']}%
+        but {county} may have different access levels.
 
-            Please provide:
-            1. Which financial services this person can access RIGHT NOW
-            2. Step by step guide to getting started with the most important one
-            3. If they lack phone or ID — exactly how to get those first
-            4. One realistic savings goal they can achieve in 3 months
+        Please provide:
+        1. Which financial services this person can access RIGHT NOW
+        2. Step by step guide to getting started with the most important one
+        3. If they lack phone or ID — exactly how to get those first
+        4. One realistic savings goal they can achieve in 3 months
 
-            Use simple, encouraging language. Avoid jargon.
-            Be specific about amounts, steps and locatio
+        Use simple, encouraging language. Avoid jargon.
+        Be specific about amounts, steps and locatio
 
-            """   
-        try:
-            response = ollama.chat(
-                model = "tinyllama",
-                messages=[{"role": "user", "content": prompt}]
-            )
-            return response["message"]["content"]
-        except Exception as e:
-            return f"AI unaivailable. Make sure Ollama is running {str(e)}"
+        """   
+    try:
+        response = ollama.chat(
+            model = "tinyllama",
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return response["message"]["content"]
+    except Exception as e:
+        return f"AI unaivailable. Make sure Ollama is running {str(e)}"
 
 def ask_financial_question(question: str, context: dict = None) -> str:
     """
